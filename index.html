@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mensaje</title>
+  <link rel="stylesheet" href="./style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="valentines-day">
+  <div class="envelope"></div>
+  <div class="heart"></div>
+  <div class="text">CLICK AQUI ESTO ES PARA TI!</div>
+  <div class="front"></div>
+</div>
+
+
+<div class="overlay" id="nameModal">
+  <div class="modal">
+    <h2>Por favor, ingresa tu nombre</h2>
+    <input type="text" id="userName" placeholder="Tu nombre aquí" />
+    <span id="error-message" style="color: red; display: none;">Por favor, ingresa tu nombre.</span>
+    <br>
+    <button id="submitName">VER MENSAJE</button>
+  </div>
+</div>
+
+<div id="message" style="display: none; text-align: center; margin-top: 50px;">
+  <h1 id="personalizedMessage"></h1>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script>
+  $(document).ready(function () {
+
+    $('.valentines-day').click(function () {
+    
+      $('#nameModal').addClass('active');
+    });
+
+
+    $('#submitName').click(function () {
+      const nombre = $('#userName').val().trim();
+      const errorMessage = $('#error-message');
+
+      if (nombre) {
+        
+        errorMessage.hide();
+
+
+        $('.envelope').fadeOut(800, function () {
+          
+          $('.valentines-day').find('.heart, .text, .front').hide();
+
+          $('#nameModal').removeClass('active');
+          $('#message').fadeIn();
+          $('#personalizedMessage').text(`${nombre}, ¿Cuando nos volvemos a ver?`);
+        });
+      } else {
+        errorMessage.show();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
